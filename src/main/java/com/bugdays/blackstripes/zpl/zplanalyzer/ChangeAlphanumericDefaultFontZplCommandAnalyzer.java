@@ -36,6 +36,12 @@ public class ChangeAlphanumericDefaultFontZplCommandAnalyzer extends ZplCommandA
             System.out.println("setting font height to " + fontHeight);
             virtualPrinter.setFontHeight(fontHeight);
             virtualPrinter.setFontWidth(fontWidth);
+
+            // to make it visible - However this can bite me back -
+            // example if someone intentionally want to set an absolute position to display only a part of the text
+            if (virtualPrinter.getCurrentPosition().y < fontHeight) {
+                virtualPrinter.getCurrentPosition().y = fontHeight;
+            }
         } else {
             virtualPrinter.addError("Invalid CF command: " + command);
         }
