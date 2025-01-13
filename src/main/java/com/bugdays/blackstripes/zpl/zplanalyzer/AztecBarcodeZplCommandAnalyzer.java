@@ -8,10 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AztecBarcodeZplCommandAnalyzer extends ZplCommandAnalyzerBase {
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("\\^BO(?<magnification>\\d+),(?<errorControl>\\d+),");
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("BO(?<magnification>\\d+),(?<errorControl>\\d+),");
 
     public AztecBarcodeZplCommandAnalyzer(VirtualPrinter printer) {
-        super("^BO", printer);
+        super("BO", printer);
     }
 
     @Override

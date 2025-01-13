@@ -17,6 +17,8 @@ public class ZplParser {
         analyzers.add(new FieldDataZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new AztecBarcodeZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new ChangeAlphanumericDefaultFontZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new FieldSeparatorZplCommandAnalyzer(virtualPrinter));
+
         // Add other analyzers here
     }
 
@@ -25,7 +27,7 @@ public class ZplParser {
         LabelInfo labelInfo = new LabelInfo();
         labelInfo.setZplElements(new ArrayList<>());
 
-        String[] lines = zplData.split("\n");
+        String[] lines = zplData.split("\\^");
         for (String line : lines) {
             boolean matched = false;
             for (ZplCommandAnalyzerBase analyzer : analyzers) {

@@ -8,10 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FieldOriginZplCommandAnalyzer extends ZplCommandAnalyzerBase {
-    private static final Pattern ORIGIN_PATTERN = Pattern.compile("\\^FO(?<x>\\d+),(?<y>\\d+)");
+    private static final Pattern ORIGIN_PATTERN = Pattern.compile("FO(?<x>\\d+),(?<y>\\d+)");
 
     public FieldOriginZplCommandAnalyzer(VirtualPrinter printer) {
-        super("^FO", printer);
+        super("FO", printer);
     }
 
     @Override

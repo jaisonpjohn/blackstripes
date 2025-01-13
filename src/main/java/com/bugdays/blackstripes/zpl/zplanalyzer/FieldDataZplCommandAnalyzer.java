@@ -9,10 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
-    private static final Pattern DATA_PATTERN = Pattern.compile("\\^FD(?<data>.+)\\^FS");
+    private static final Pattern DATA_PATTERN = Pattern.compile("FD(?<data>.+)");
 
     public FieldDataZplCommandAnalyzer(VirtualPrinter printer) {
-        super("^FD", printer);
+        super("FD", printer);
     }
 
     @Override

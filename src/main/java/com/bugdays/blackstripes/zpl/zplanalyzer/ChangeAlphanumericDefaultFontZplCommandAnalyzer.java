@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 
 public class ChangeAlphanumericDefaultFontZplCommandAnalyzer extends ZplCommandAnalyzerBase {
 
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("\\^CF(?<fontName>\\w+)(,(?<fontHeight>\\d+))?(,(?<fontWidth>\\d+))?");
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("CF(?<fontName>\\w+)(,(?<fontHeight>\\d+))?(,(?<fontWidth>\\d+))?");
 
     public ChangeAlphanumericDefaultFontZplCommandAnalyzer(VirtualPrinter virtualPrinter) {
-        super("^CF", virtualPrinter);
+        super("CF", virtualPrinter);
     }
 
     @Override
@@ -33,6 +33,7 @@ public class ChangeAlphanumericDefaultFontZplCommandAnalyzer extends ZplCommandA
                     : 0;
 
             // Update the VirtualPrinter with the extracted values
+            System.out.println("setting font height to " + fontHeight);
             virtualPrinter.setFontHeight(fontHeight);
             virtualPrinter.setFontWidth(fontWidth);
         } else {
