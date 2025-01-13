@@ -9,10 +9,11 @@ import java.util.List;
 public class VirtualPrinter {
     private List<ZplElementBase> elements = new ArrayList<>();
     private List<String> errors = new ArrayList<>();
-    private Point currentPosition = new Point(0, 0);
     private String fontName = "Arial";
     private int fontHeight = 9;
     private int fontWidth = 0;
+    private Point currentPosition = new Point(0, getFontHeight());
+
 
     public void addElement(ZplElementBase element) {
         elements.add(element);
@@ -61,5 +62,9 @@ public class VirtualPrinter {
 
     public int getFontWidth() {
         return fontWidth;
+    }
+
+    public void markFieldComplete() {
+        this.currentPosition = new Point(0, getFontHeight());
     }
 }
