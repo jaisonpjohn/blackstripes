@@ -3,6 +3,7 @@ package com.bugdays.blackstripes.zpl.zplanalyzer;
 
 import com.bugdays.blackstripes.zpl.VirtualPrinter;
 import com.bugdays.blackstripes.zpl.zplelement.BarcodeElement;
+import com.bugdays.blackstripes.zpl.zplelement.DataMatrixElement;
 import com.bugdays.blackstripes.zpl.zplelement.TextElement;
 import com.bugdays.blackstripes.zpl.zplelement.ZplElementBase;
 
@@ -30,17 +31,39 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
                     barcodeElement.setData(data);
                     barcodeFound = true;
                     if (barcodeElement.isHumanReadable()) {
-                        virtualPrinter.addElement(new TextElement(data, virtualPrinter));
+                        //TODO: circular reference problem
+                        // Calculate the position for the text element to be centered under the barcode
+                        int textX = barcodeElement.getX() + (barcodeElement.calculateTotalWidth(data) / 2) - (180 / 2);
+                        TextElement textElement = getTextElement(barcodeElement, data, textX);
+
+                        virtualPrinter.addElement(textElement);
                     }
+                    break;
+                } else if (element instanceof DataMatrixElement) {
+                    DataMatrixElement dataMatrixElement = (DataMatrixElement) element;
+                    dataMatrixElement.setData(data);
+                    barcodeFound = true;
                     break;
                 }
             }
 
             if (!barcodeFound) {
+                //TODO: circular reference problem
                 virtualPrinter.addElement(new TextElement(data, virtualPrinter));
             }
         } else {
             virtualPrinter.addError("Invalid FD command: " + command);
         }
+    }
+
+    private TextElement getTextElement(BarcodeElement barcodeElement, String data, int textX) {
+        int textY = barcodeElement.getY() + barcodeElement.getHeight() + 12; // Adjust the Y position as needed
+
+        TextElement textElement = new TextElement(data, virtualPrinter);
+        textElement.setX(textX);
+        textElement.setY(textY);
+        textElement.setFontName("Courier New"); // Set a different font
+        textElement.setFontHeight(12); // Adjust the font size as needed
+        return textElement;
     }
 }

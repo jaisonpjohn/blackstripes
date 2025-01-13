@@ -32,6 +32,10 @@ public class VirtualPrinter {
         return barcodeHeight;
     }
 
+    public double getBarcodeModuleWidth() {
+        return barcodeModuleWidth;
+    }
+
     private List<ZplElementBase> elements = new ArrayList<>();
     private List<ZplElementBase> inProgressElements = new ArrayList<>();
     private boolean fieldOriginOpen = false;

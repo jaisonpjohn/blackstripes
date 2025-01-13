@@ -3,6 +3,7 @@ package com.bugdays.blackstripes.zpl;
 
 
 import com.bugdays.blackstripes.zpl.zplanalyzer.*;
+import com.bugdays.blackstripes.zpl.zplanalyzer.DataMatrixZplCommandAnalyzer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,7 @@ public class ZplParser {
         analyzers.add(new FieldSeparatorZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new BarcodeFieldDefaultsZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new BarcodeZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new DataMatrixZplCommandAnalyzer(virtualPrinter));
 
         // Add other analyzers here
     }

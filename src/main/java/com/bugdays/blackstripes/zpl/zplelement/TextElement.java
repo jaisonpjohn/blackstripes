@@ -11,6 +11,14 @@ public class TextElement extends ZplElementBase {
     private int fontWidth = 0;
     private VirtualPrinter virtualPrinter;
 
+    public void setFontName(String fontName) {
+        this.fontName = fontName;
+    }
+
+    public void setFontHeight(int fontHeight) {
+        this.fontHeight = fontHeight;
+    }
+
     public TextElement(String text, VirtualPrinter virtualPrinter) {
         this.text = text;
         this.setX(virtualPrinter.getCurrentPosition().x);
