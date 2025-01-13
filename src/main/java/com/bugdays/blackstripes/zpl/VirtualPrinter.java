@@ -9,10 +9,10 @@ import java.util.List;
 public class VirtualPrinter {
     private List<ZplElementBase> elements = new ArrayList<>();
     private List<String> errors = new ArrayList<>();
-    private Point currentPosition = new Point(0, 0); // Default position (0, 0)
-    private String fontName = "Arial"; // Default font name
-    private int fontHeight = 9; // Default font height
-    private int fontWidth = 0; // Default font width
+    private Point currentPosition = new Point(0, 0);
+    private String fontName = "Arial";
+    private int fontHeight = 9;
+    private int fontWidth = 0;
 
     public void addElement(ZplElementBase element) {
         elements.add(element);

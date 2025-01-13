@@ -6,6 +6,9 @@ import java.awt.*;
 
 public class TextElement extends ZplElementBase {
     private String text;
+    private String fontName = "Arial";
+    private int fontHeight = 9;
+    private int fontWidth = 0;
     private VirtualPrinter virtualPrinter;
 
     public TextElement(String text, Point position, VirtualPrinter virtualPrinter) {
@@ -13,14 +16,15 @@ public class TextElement extends ZplElementBase {
         this.setX(position.x);
         this.setY(position.y);
         this.virtualPrinter = virtualPrinter;
+        this.fontName = virtualPrinter.getFontName();
+        this.fontHeight = virtualPrinter.getFontHeight();
+        this.fontWidth = virtualPrinter.getFontWidth();
     }
 
     @Override
     public void draw(Graphics2D graphics) {
-        int fontSize = virtualPrinter.getFontHeight();
         graphics.setColor(Color.BLACK);
-        System.out.println("Font name: " + virtualPrinter.getFontHeight());
-        graphics.setFont(new Font(virtualPrinter.getFontName(), Font.PLAIN, fontSize));
+        graphics.setFont(new Font(this.fontName, Font.PLAIN, this.fontHeight));
         graphics.drawString(text, this.getX(), this.getY());
     }
 }
