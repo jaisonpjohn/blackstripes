@@ -16,7 +16,6 @@ public class Main {
                         ^FO100,200
                         ^CF0,20
                         ^FDString-ABC^FS
-                        ^FO100,300
                         ^CF0,40
                         ^FDString-XYZ^FS
                         """;

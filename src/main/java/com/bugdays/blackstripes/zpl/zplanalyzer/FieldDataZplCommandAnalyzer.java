@@ -20,8 +20,7 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
         Matcher matcher = DATA_PATTERN.matcher(command);
         if (matcher.find()) {
             String data = matcher.group("data");
-            Point currentPosition = virtualPrinter.getCurrentPosition();
-            virtualPrinter.addElement(new TextElement(data, currentPosition, virtualPrinter));
+            virtualPrinter.addElement(new TextElement(data, virtualPrinter));
         } else {
             virtualPrinter.addError("Invalid FD command: " + command);
         }
