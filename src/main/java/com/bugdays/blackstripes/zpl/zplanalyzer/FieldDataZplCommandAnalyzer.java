@@ -2,7 +2,9 @@ package com.bugdays.blackstripes.zpl.zplanalyzer;
 
 
 import com.bugdays.blackstripes.zpl.VirtualPrinter;
+import com.bugdays.blackstripes.zpl.zplelement.BarcodeElement;
 import com.bugdays.blackstripes.zpl.zplelement.TextElement;
+import com.bugdays.blackstripes.zpl.zplelement.ZplElementBase;
 
 import java.awt.*;
 import java.util.regex.Matcher;
@@ -20,7 +22,23 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
         Matcher matcher = DATA_PATTERN.matcher(command);
         if (matcher.find()) {
             String data = matcher.group("data");
-            virtualPrinter.addElement(new TextElement(data, virtualPrinter));
+            boolean barcodeFound = false;
+
+            for (ZplElementBase element : virtualPrinter.getInProgressElements()) {
+                if (element instanceof BarcodeElement) {
+                    BarcodeElement barcodeElement = (BarcodeElement) element;
+                    barcodeElement.setData(data);
+                    barcodeFound = true;
+                    if (barcodeElement.isHumanReadable()) {
+                        virtualPrinter.addElement(new TextElement(data, virtualPrinter));
+                    }
+                    break;
+                }
+            }
+
+            if (!barcodeFound) {
+                virtualPrinter.addElement(new TextElement(data, virtualPrinter));
+            }
         } else {
             virtualPrinter.addError("Invalid FD command: " + command);
         }

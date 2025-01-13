@@ -11,6 +11,17 @@ public class VirtualPrinter {
     private int barcodeWideToNarrowRatio = 3;
     private int barcodeHeight = 70;
 
+    public void openFieldOrigin() {
+        fieldOriginOpen = true;
+    }
+
+    public void closeFieldOrigin() {
+        fieldOriginOpen = false;
+        elements.addAll(inProgressElements);
+        inProgressElements.clear();
+        resetPosition();
+    }
+
     public void setBarcodeDefaults(double moduleWidth, int wideToNarrowRatio, int height) {
         this.barcodeModuleWidth = moduleWidth;
         this.barcodeWideToNarrowRatio = wideToNarrowRatio;
@@ -22,15 +33,24 @@ public class VirtualPrinter {
     }
 
     private List<ZplElementBase> elements = new ArrayList<>();
+    private List<ZplElementBase> inProgressElements = new ArrayList<>();
+    private boolean fieldOriginOpen = false;
     private List<String> errors = new ArrayList<>();
     private String fontName = "Arial";
     private int fontHeight = 9;
     private int fontWidth = 0;
     private Point currentPosition = new Point(0, getFontHeight());
 
+    public List<ZplElementBase> getInProgressElements() {
+        return inProgressElements;
+    }
 
     public void addElement(ZplElementBase element) {
-        elements.add(element);
+        if (fieldOriginOpen) {
+            inProgressElements.add(element);
+        } else {
+            elements.add(element);
+        }
     }
 
     public void addError(String error) {
@@ -78,7 +98,7 @@ public class VirtualPrinter {
         return fontWidth;
     }
 
-    public void markFieldComplete() {
+    private void resetPosition() {
         this.currentPosition = new Point(0, getFontHeight());
     }
 }

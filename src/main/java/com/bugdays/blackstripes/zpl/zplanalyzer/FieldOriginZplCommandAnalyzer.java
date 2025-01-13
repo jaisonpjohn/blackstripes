@@ -21,6 +21,7 @@ public class FieldOriginZplCommandAnalyzer extends ZplCommandAnalyzerBase {
             int x = Integer.parseInt(matcher.group("x"));
             int y = Integer.parseInt(matcher.group("y"));
             virtualPrinter.setCurrentPosition(new Point(x, y));
+            virtualPrinter.openFieldOrigin();
         } else {
             virtualPrinter.addError("Invalid FO command: " + command);
         }

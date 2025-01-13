@@ -25,7 +25,7 @@ public class BarcodeZplCommandAnalyzer extends ZplCommandAnalyzerBase {
             boolean humanReadable = matcher.group("humanReadable").equals("Y");
 
             Point position = virtualPrinter.getCurrentPosition();
-            BarcodeElement element = new BarcodeElement("Sample Data", type, position, height, humanReadable);
+            BarcodeElement element = new BarcodeElement(null, type, position, height, humanReadable);
             virtualPrinter.addElement(element);
         } else {
             virtualPrinter.addError("Invalid BC command: " + command);

@@ -11,6 +11,11 @@ public class BarcodeElement extends ZplElementBase {
     private int height;
     private boolean humanReadable;
 
+    public void setData(String data) {
+        this.data = data;
+    }
+
+
     public BarcodeElement(String data, String type, Point position, int height, boolean humanReadable) {
         this.data = data;
         this.type = type;
@@ -40,5 +45,9 @@ public class BarcodeElement extends ZplElementBase {
         );
 
         return MatrixToImageWriter.toBufferedImage(matrix);
+    }
+
+    public boolean isHumanReadable() {
+        return humanReadable;
     }
 }

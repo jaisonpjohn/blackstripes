@@ -10,6 +10,6 @@ public class FieldSeparatorZplCommandAnalyzer extends ZplCommandAnalyzerBase {
 
     @Override
     public void analyze(String command) {
-        virtualPrinter.markFieldComplete();
+        virtualPrinter.closeFieldOrigin();
     }
 }
