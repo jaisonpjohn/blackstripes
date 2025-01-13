@@ -18,6 +18,8 @@ public class ZplParser {
         analyzers.add(new AztecBarcodeZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new ChangeAlphanumericDefaultFontZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new FieldSeparatorZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new BarcodeFieldDefaultsZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new BarcodeZplCommandAnalyzer(virtualPrinter));
 
         // Add other analyzers here
     }

@@ -7,6 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VirtualPrinter {
+    private double barcodeModuleWidth = 2.0;
+    private int barcodeWideToNarrowRatio = 3;
+    private int barcodeHeight = 70;
+
+    public void setBarcodeDefaults(double moduleWidth, int wideToNarrowRatio, int height) {
+        this.barcodeModuleWidth = moduleWidth;
+        this.barcodeWideToNarrowRatio = wideToNarrowRatio;
+        this.barcodeHeight = height;
+    }
+
+    public int getBarcodeHeight() {
+        return barcodeHeight;
+    }
+
     private List<ZplElementBase> elements = new ArrayList<>();
     private List<String> errors = new ArrayList<>();
     private String fontName = "Arial";
