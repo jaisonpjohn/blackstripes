@@ -22,8 +22,12 @@ public class ZplParser {
         analyzers.add(new BarcodeFieldDefaultsZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new BarcodeZplCommandAnalyzer(virtualPrinter));
         analyzers.add(new DataMatrixZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new GraphicImageZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new GraphicBoxZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new FieldTypesetZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new FieldAlphanumericZplCommandAnalyzer(virtualPrinter));
+        analyzers.add(new FieldBlockZplCommandAnalyzer(virtualPrinter));
 
-        // Add other analyzers here
     }
 
     public AnalyzeInfo parse(String zplData) {

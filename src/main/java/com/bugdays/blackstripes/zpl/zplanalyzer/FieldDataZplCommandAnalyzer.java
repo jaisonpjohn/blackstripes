@@ -2,10 +2,7 @@ package com.bugdays.blackstripes.zpl.zplanalyzer;
 
 
 import com.bugdays.blackstripes.zpl.VirtualPrinter;
-import com.bugdays.blackstripes.zpl.zplelement.BarcodeElement;
-import com.bugdays.blackstripes.zpl.zplelement.DataMatrixElement;
-import com.bugdays.blackstripes.zpl.zplelement.TextElement;
-import com.bugdays.blackstripes.zpl.zplelement.ZplElementBase;
+import com.bugdays.blackstripes.zpl.zplelement.*;
 
 import java.awt.*;
 import java.util.regex.Matcher;
@@ -24,7 +21,8 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
         if (matcher.find()) {
             String data = matcher.group("data");
             boolean barcodeFound = false;
-
+            // TODO, need to revisit this. I dont know whethere we will exit with the first element we encounter or,
+            //  we should just get the last one, or we should get all of them
             for (ZplElementBase element : virtualPrinter.getInProgressElements()) {
                 if (element instanceof BarcodeElement) {
                     BarcodeElement barcodeElement = (BarcodeElement) element;
@@ -42,6 +40,11 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
                 } else if (element instanceof DataMatrixElement) {
                     DataMatrixElement dataMatrixElement = (DataMatrixElement) element;
                     dataMatrixElement.setData(data);
+                    barcodeFound = true;
+                    break;
+                } else if (element instanceof FieldBlockElement) {
+                    FieldBlockElement fieldBlockElement = (FieldBlockElement) element;
+                    fieldBlockElement.setText(data);
                     barcodeFound = true;
                     break;
                 }

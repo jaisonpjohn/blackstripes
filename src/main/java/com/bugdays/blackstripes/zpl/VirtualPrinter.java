@@ -3,13 +3,21 @@ package com.bugdays.blackstripes.zpl;
 import com.bugdays.blackstripes.zpl.zplelement.ZplElementBase;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VirtualPrinter {
+    private Map<String, BufferedImage> images = new HashMap<>();
     private double barcodeModuleWidth = 2.0;
     private int barcodeWideToNarrowRatio = 3;
     private int barcodeHeight = 70;
+
+    public void addImage(String name, BufferedImage image) {
+        images.put(name, image);
+    }
 
     public void openFieldOrigin() {
         fieldOriginOpen = true;
@@ -104,5 +112,9 @@ public class VirtualPrinter {
 
     private void resetPosition() {
         this.currentPosition = new Point(0, getFontHeight());
+    }
+
+    public BufferedImage getImage(String imageName) {
+        return images.get(imageName);
     }
 }
