@@ -7,8 +7,10 @@ public class FieldBlockElement extends ZplElementBase {
     private int width;
     private int maxLines;
     private int lineSpacing;
+    private String rotation;
 
     public FieldBlockElement(String text, int width, int maxLines, int lineSpacing, Point position) {
+        System.out.println("FieldBlockElement======");
         this.text = text;
         this.width = width;
         this.maxLines = maxLines;
@@ -17,12 +19,16 @@ public class FieldBlockElement extends ZplElementBase {
         this.setY(position.y);
     }
 
-    public String getText() {
-        return text;
-    }
-
     public void setText(String text) {
         this.text = text;
+    }
+
+    public void setRotation(String rotation) {
+        this.rotation = rotation;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public int getWidth() {
@@ -49,6 +55,10 @@ public class FieldBlockElement extends ZplElementBase {
         this.lineSpacing = lineSpacing;
     }
 
+    public String getRotation() {
+        return rotation;
+    }
+
     @Override
     public void draw(Graphics2D graphics) {
         FontMetrics metrics = graphics.getFontMetrics();
@@ -63,7 +73,7 @@ public class FieldBlockElement extends ZplElementBase {
             String testLine = line + word + " ";
             int lineWidth = metrics.stringWidth(testLine);
             if (lineWidth > width && line.length() > 0) {
-                graphics.drawString(line.toString(), this.getX(), y);
+                drawRotatedText(graphics, line.toString(), this.getX(), y);
                 line = new StringBuilder(word + " ");
                 y += lineHeight;
                 lineCount++;
@@ -75,7 +85,26 @@ public class FieldBlockElement extends ZplElementBase {
             }
         }
         if (lineCount < maxLines) {
-            graphics.drawString(line.toString(), this.getX(), y);
+            drawRotatedText(graphics, line.toString(), this.getX(), y);
+        }
+    }
+
+    private void drawRotatedText(Graphics2D graphics, String text, int x, int y) {
+        System.out.println("Drawing text with rotation: " + rotation);
+        if ("B".equals(rotation)) {
+            graphics.rotate(Math.toRadians(270), x, y);
+            graphics.drawString(text, x, y);
+            graphics.rotate(Math.toRadians(-270), x, y);
+        } else if ("I".equals(rotation)) {
+            graphics.rotate(Math.toRadians(180), x, y);
+            graphics.drawString(text, x, y);
+            graphics.rotate(Math.toRadians(-180), x, y);
+        } else if ("R".equals(rotation)) {
+            graphics.rotate(Math.toRadians(90), x, y);
+            graphics.drawString(text, x, y);
+            graphics.rotate(Math.toRadians(-90), x, y);
+        } else {
+            graphics.drawString(text, x, y);
         }
     }
 }

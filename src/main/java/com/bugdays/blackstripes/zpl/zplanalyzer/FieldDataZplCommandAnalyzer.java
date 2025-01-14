@@ -51,8 +51,8 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
             }
 
             if (!barcodeFound) {
-                //TODO: circular reference problem
-                virtualPrinter.addElement(new TextElement(data, virtualPrinter));
+                virtualPrinter.addElement(new TextElement(data, virtualPrinter.getCurrentPosition(),
+                        virtualPrinter.getFontName(),virtualPrinter.getFontHeight(), virtualPrinter.getFontWidth(), virtualPrinter.getFontRotation()));
             }
         } else {
             virtualPrinter.addError("Invalid FD command: " + command);
@@ -62,11 +62,7 @@ public class FieldDataZplCommandAnalyzer extends ZplCommandAnalyzerBase {
     private TextElement getTextElement(BarcodeElement barcodeElement, String data, int textX) {
         int textY = barcodeElement.getY() + barcodeElement.getHeight() + 12; // Adjust the Y position as needed
 
-        TextElement textElement = new TextElement(data, virtualPrinter);
-        textElement.setX(textX);
-        textElement.setY(textY);
-        textElement.setFontName("Courier New"); // Set a different font
-        textElement.setFontHeight(12); // Adjust the font size as needed
-        return textElement;
+        return new TextElement(data, new Point(textX, textY),
+                "Courier New",12, virtualPrinter.getFontWidth(), virtualPrinter.getFontRotation());
     }
 }
