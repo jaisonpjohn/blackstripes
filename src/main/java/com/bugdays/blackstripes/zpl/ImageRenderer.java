@@ -12,7 +12,7 @@ public class ImageRenderer {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = image.createGraphics();
         graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, 800, 400);
+        graphics.fillRect(0, 0, 1800, 1000);
 
         // Set up rendering settings
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

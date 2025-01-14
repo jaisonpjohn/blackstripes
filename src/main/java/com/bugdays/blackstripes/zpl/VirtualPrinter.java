@@ -10,15 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class VirtualPrinter {
+    private String fontRotation;
     private Map<String, BufferedImage> images = new HashMap<>();
     private double barcodeModuleWidth = 2.0;
     private int barcodeWideToNarrowRatio = 3;
     private int barcodeHeight = 70;
 
+    public String getFontRotation() {
+        return fontRotation;
+    }
+
     public void addImage(String name, BufferedImage image) {
         images.put(name, image);
     }
 
+    public boolean isFieldOriginOpen() {
+        return fieldOriginOpen;
+    }
     public void openFieldOrigin() {
         fieldOriginOpen = true;
     }
@@ -116,5 +124,9 @@ public class VirtualPrinter {
 
     public BufferedImage getImage(String imageName) {
         return images.get(imageName);
+    }
+
+    public void setFontRotation(String rotation) {
+        this.fontRotation = rotation;
     }
 }
