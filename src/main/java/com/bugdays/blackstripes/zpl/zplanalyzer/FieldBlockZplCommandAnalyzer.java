@@ -8,8 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FieldBlockZplCommandAnalyzer extends ZplCommandAnalyzerBase {
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("FB(?<width>\\d+),(?<maxLines>\\d+),(?<lineSpacing>\\d+)");
-
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("FB(?<width>\\d+),(?<maxLines>\\d+),(?<lineSpacing>-?\\d+),?");
     public FieldBlockZplCommandAnalyzer(VirtualPrinter virtualPrinter) {
         super("FB", virtualPrinter);
     }
@@ -18,6 +17,7 @@ public class FieldBlockZplCommandAnalyzer extends ZplCommandAnalyzerBase {
     public void analyze(String command) {
         Matcher matcher = COMMAND_PATTERN.matcher(command);
         if (matcher.find()) {
+            System.out.println("FBmatcher-GG-FieldBlockZplCommandAnalyzer: " + command);
             int width = Integer.parseInt(matcher.group("width"));
             int maxLines = Integer.parseInt(matcher.group("maxLines"));
             int lineSpacing = Integer.parseInt(matcher.group("lineSpacing"));

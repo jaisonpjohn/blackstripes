@@ -10,6 +10,7 @@ public class FieldBlockElement extends ZplElementBase {
     private String rotation;
 
     public FieldBlockElement(String text, int width, int maxLines, int lineSpacing, Point position) {
+        System.out.println("FieldBlockElement======");
         this.text = text;
         this.width = width;
         this.maxLines = maxLines;
@@ -24,6 +25,38 @@ public class FieldBlockElement extends ZplElementBase {
 
     public void setRotation(String rotation) {
         this.rotation = rotation;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getMaxLines() {
+        return maxLines;
+    }
+
+    public void setMaxLines(int maxLines) {
+        this.maxLines = maxLines;
+    }
+
+    public int getLineSpacing() {
+        return lineSpacing;
+    }
+
+    public void setLineSpacing(int lineSpacing) {
+        this.lineSpacing = lineSpacing;
+    }
+
+    public String getRotation() {
+        return rotation;
     }
 
     @Override
@@ -57,18 +90,19 @@ public class FieldBlockElement extends ZplElementBase {
     }
 
     private void drawRotatedText(Graphics2D graphics, String text, int x, int y) {
+        System.out.println("Drawing text with rotation: " + rotation);
         if ("B".equals(rotation)) {
-            graphics.rotate(Math.toRadians(90), x, y);
+            graphics.rotate(Math.toRadians(270), x, y);
             graphics.drawString(text, x, y);
-            graphics.rotate(Math.toRadians(-90), x, y);
+            graphics.rotate(Math.toRadians(-270), x, y);
         } else if ("I".equals(rotation)) {
             graphics.rotate(Math.toRadians(180), x, y);
             graphics.drawString(text, x, y);
             graphics.rotate(Math.toRadians(-180), x, y);
         } else if ("R".equals(rotation)) {
-            graphics.rotate(Math.toRadians(270), x, y);
+            graphics.rotate(Math.toRadians(90), x, y);
             graphics.drawString(text, x, y);
-            graphics.rotate(Math.toRadians(-270), x, y);
+            graphics.rotate(Math.toRadians(-90), x, y);
         } else {
             graphics.drawString(text, x, y);
         }

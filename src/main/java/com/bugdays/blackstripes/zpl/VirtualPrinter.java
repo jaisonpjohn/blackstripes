@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class VirtualPrinter {
-    private String fontRotation;
+    private String fontRotation= "N";
     private Map<String, BufferedImage> images = new HashMap<>();
     private double barcodeModuleWidth = 2.0;
     private int barcodeWideToNarrowRatio = 3;
@@ -36,6 +36,11 @@ public class VirtualPrinter {
         elements.addAll(inProgressElements);
         inProgressElements.clear();
         resetPosition();
+        resetRotation();
+    }
+
+    private void resetRotation() {
+        this.fontRotation = "N";
     }
 
     public void setBarcodeDefaults(double moduleWidth, int wideToNarrowRatio, int height) {
@@ -129,4 +134,6 @@ public class VirtualPrinter {
     public void setFontRotation(String rotation) {
         this.fontRotation = rotation;
     }
+
+
 }
