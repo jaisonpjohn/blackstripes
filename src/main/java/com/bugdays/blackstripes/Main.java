@@ -182,7 +182,7 @@ public class Main {
         AnalyzeInfo info = parser.parse(zplData);
 
         ImageRenderer renderer = new ImageRenderer();
-        BufferedImage image = renderer.render(info.getLabelInfos().get(0).getZplElements(), 1800, 1000);
+        BufferedImage image = renderer.render(info.getLabelInfos().get(0).getZplElements(), 2400, 800);
 
         try {
             ImageIO.write(image, "png", new File("output.png"));
