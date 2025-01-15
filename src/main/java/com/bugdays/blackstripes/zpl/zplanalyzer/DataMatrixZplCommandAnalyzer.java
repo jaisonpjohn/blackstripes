@@ -20,10 +20,11 @@ public class DataMatrixZplCommandAnalyzer extends ZplCommandAnalyzerBase {
         if (matcher.find()) {
             String orientation = matcher.group("orientation"); // Handle if needed
             int height = matcher.group("height") != null ? Integer.parseInt(matcher.group("height")) : 10; // Default height
-            int moduleWidth = matcher.group("moduleWidth") != null ? Integer.parseInt(matcher.group("moduleWidth")) : 2; // Default module width
-
+            int moduleWidth = matcher.group("moduleWidth") != null ? Integer.parseInt(matcher.group("moduleWidth")) : 5;
+            // print every field
+            System.out.println("BXmatcher-GG-DataMatrixZplCommandAnalyzer: height: " + height + ", moduleWidth: " + moduleWidth + ", orientation: " + orientation);
             Point position = virtualPrinter.getCurrentPosition();
-            DataMatrixElement element = new DataMatrixElement(null, position, moduleWidth, height);
+            DataMatrixElement element = new DataMatrixElement(null, position, moduleWidth, height, orientation);
             virtualPrinter.addElement(element);
 
         } else {

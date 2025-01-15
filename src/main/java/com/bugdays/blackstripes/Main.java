@@ -9,6 +9,23 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+// TODO
+
+/*
+BXB - size height or width? position
+not wrapping KKD
+the distance of the direct LLC
+The left padding of the barcode from the wikipedia example
+
+^XA and the looping and publish as nexus library
+debug log statement - logging library - transitive or compile time
+
+implement all the missing elements
+hosted version in bugdays
+tests
+
+
+ */
 public class Main {
     public static void main(String[] args) {
         String zplData =
@@ -48,11 +65,11 @@ public class Main {
                         ^A@B,21,21,E:ARI001.TTF
                         ^FD01-UU-001/KKD/TC
                         ^FS
-                        ^FO115,150
+                        ^FO130,400
                         ^A@B,21,21,E:ARI001.TTF
                         ^FD000000000650210222
                         ^FS
-                        ^FO135,150
+                        ^FO150,325
                         ^A@B,21,21,E:ARI001.TTF
                         ^FD222333444555
                         ^FS
