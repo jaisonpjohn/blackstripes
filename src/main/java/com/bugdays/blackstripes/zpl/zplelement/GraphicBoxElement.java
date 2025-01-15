@@ -17,7 +17,12 @@ public class GraphicBoxElement extends ZplElementBase {
 
     @Override
     public void draw(Graphics2D graphics) {
+        //print all the fields
+        System.out.println("GraphicBoxElement=====  width: " + width + " height: " + height + " thickness: " + thickness + " x: " + this.getX() + " y: " + this.getY());
+        Stroke originalStroke = graphics.getStroke();
+        graphics.setColor(Color.BLACK);
         graphics.setStroke(new BasicStroke(thickness));
         graphics.drawRect(this.getX(), this.getY(), width, height);
+        graphics.setStroke(originalStroke);
     }
 }

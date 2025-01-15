@@ -9,7 +9,7 @@ public class FieldBlockElement extends ZplElementBase {
     private int lineSpacing;
     private String rotation;
 
-    public FieldBlockElement(String text, int width, int maxLines, int lineSpacing, Point position) {
+    public FieldBlockElement(String text, int width, int maxLines, int lineSpacing, Point position, String rotation) {
         System.out.println("FieldBlockElement======");
         this.text = text;
         this.width = width;
@@ -17,6 +17,7 @@ public class FieldBlockElement extends ZplElementBase {
         this.lineSpacing = lineSpacing;
         this.setX(position.x);
         this.setY(position.y);
+        this.rotation = rotation;
     }
 
     public void setText(String text) {

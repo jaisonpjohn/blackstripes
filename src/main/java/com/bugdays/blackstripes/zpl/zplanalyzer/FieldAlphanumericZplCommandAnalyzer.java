@@ -29,10 +29,20 @@ public class FieldAlphanumericZplCommandAnalyzer extends ZplCommandAnalyzerBase 
             virtualPrinter.setFontHeight(fontHeight);
             virtualPrinter.setFontWidth(fontWidth);
             virtualPrinter.setFontRotation(rotation);
-            // lets iterate through inprogress elements if its on, then lets update the rotation if its FieldBlockElement
+
+            //print all these values that set
+            System.out.println("AAAA-GG-virtualPrinter.getFontName(): " + virtualPrinter.getFontName());
+            System.out.println("AAAA-GG-virtualPrinter.getFontHeight(): " + virtualPrinter.getFontHeight());
+            System.out.println("AAAA-GG-virtualPrinter.getFontWidth(): " + virtualPrinter.getFontWidth());
+            System.out.println("AAAA-GG-virtualPrinter.getFontRotation(): " + virtualPrinter.getFontRotation());
+
+
+            // Also, I think this shouldnt mutate the entire virtual printer, but rather the current element since its name
+            // I think this check will always resolve to true
             if (virtualPrinter.isFieldOriginOpen()) {
                 System.out.println("GG-FieldOriginOpen: " + virtualPrinter.isFieldOriginOpen());
-                virtualPrinter.getInProgressElements().forEach(element -> {
+
+                /*virtualPrinter.getInProgressElements().forEach(element -> {
                     if (element instanceof FieldBlockElement) {
                         System.out.println("GG-FieldBlockElement: " + element);
                         FieldBlockElement element1 = (FieldBlockElement) element;
@@ -40,7 +50,7 @@ public class FieldAlphanumericZplCommandAnalyzer extends ZplCommandAnalyzerBase 
                         element1.setWidth(fontHeight);
                         element1.setWidth(fontWidth);
                     }
-                });
+                });*/
             }
         } else {
             virtualPrinter.addError("Invalid A command: " + command);

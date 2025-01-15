@@ -23,7 +23,7 @@ public class FieldBlockZplCommandAnalyzer extends ZplCommandAnalyzerBase {
             int lineSpacing = Integer.parseInt(matcher.group("lineSpacing"));
 
             Point position = virtualPrinter.getCurrentPosition();
-            FieldBlockElement element = new FieldBlockElement(null, width, maxLines, lineSpacing, position);
+            FieldBlockElement element = new FieldBlockElement(null, width, maxLines, lineSpacing, position, virtualPrinter.getFontRotation());
             virtualPrinter.addElement(element);
         } else {
             virtualPrinter.addError("Invalid FB command: " + command);
